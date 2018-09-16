@@ -16,10 +16,10 @@ module.exports = function(app) {
 	// Add new friend entry
 	app.post('/api/friends', function(req, res) {
 		// Capture the user input object
-		var userInput = req.body;
+		var userData = req.body;
 		// console.log('userInput = ' + JSON.stringify(userInput));
 
-		var userResponses = userInput.scores;
+		var userResponses = userData.scores;
 		// console.log('userResponses = ' + userResponses);
 
 		// Compute best friend match
@@ -40,9 +40,9 @@ module.exports = function(app) {
 
 			// If lowest difference, record the friend match
 			if (diff < totalDifference) {
-				// console.log('Closest match found = ' + diff);
-				// console.log('Friend name = ' + friends[i].name);
-				// console.log('Friend image = ' + friends[i].photo);
+				console.log('Closest match found = ' + diff);
+				console.log('Friend name = ' + friends[i].name);
+				console.log('Friend image = ' + friends[i].photo);
 
 				totalDifference = diff;
 				matchName = friends[i].name;
@@ -51,7 +51,7 @@ module.exports = function(app) {
 		}
 
 		// Add new user
-		friends.push(userInput);
+		friends.push(userData);
 
 		// Send appropriate response
 		res.json({status: 'OK', matchName: matchName, matchImage: matchImage});
